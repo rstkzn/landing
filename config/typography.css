@@ -18,7 +18,7 @@
   /* Header and personal details */
   --brand-font-size: 13px;
   --navigation-font-size: 12px;
-  --name-font-size: clamp(49px, 7vw, 82px);
+  --name-font-size: clamp(45px, 5.5vw, 70px);
   --name-line-height: 1.12;
   --job-title-size: 17px;
   --intro-description-size: 15px;
