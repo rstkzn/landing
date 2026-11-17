@@ -77,7 +77,7 @@ jobs:
           done
           # Pages may deploy after this workflow starts. Wait for the new dynamic version.
           for i in $(seq 1 30); do
-            if curl -fsSL "${SITE}" | grep -q 'id="positions"' && curl -fsSL "${SITE}config/typography.css" | grep -q -- '--work-description-size'; then
+            if curl -fsSL "${SITE}" | grep -q 'mailto:rstkzn@yandex.ru' && curl -fsSL "${SITE}styles.css" | grep -q 'contact-methods' && curl -fsSL "${SITE}config/typography.css" | grep -q 'work-description-size: 15px'; then
               echo "Current dynamic CV is live"
               break
             fi
@@ -99,6 +99,8 @@ jobs:
           file /tmp/profile.webp | grep -q "Web/P image"
           google-chrome --headless=new --no-sandbox --disable-dev-shm-usage --disable-gpu --hide-scrollbars --window-size=1440,1000 --virtual-time-budget=4500 --dump-dom "${SITE}" > /tmp/rendered.html 2>/tmp/chrome-errors.txt
           grep -q 'assets/profile.webp' /tmp/rendered.html
+          grep -q 'mailto:rstkzn@yandex.ru' /tmp/rendered.html
+          grep -q 'tel:+79173935321' /tmp/rendered.html
           grep -q 'position position-primary' /tmp/rendered.html
           grep -q '10 TB in 10 hours' /tmp/rendered.html
           if grep -q 'Could not load work history' /tmp/rendered.html; then echo "Markdown failed to load"; exit 1; fi
