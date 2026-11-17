@@ -27,11 +27,11 @@ jobs:
           done
           echo "Wait for the deployed CV version"
           for i in $(seq 1 30); do
-            if curl -fsSL "${SITE}" | grep -q "10 TB in 10 hours" && curl -fsSL "${SITE}styles.css" | grep -q "position-primary"; then echo "Current CV and CSS are live"; break; fi
+            if curl -fsSL "${SITE}" | grep -q "10 TB in 10 hours" && curl -fsSL "${SITE}styles.css" | grep -q "position-tools"; then echo "Current CV and CSS are live"; break; fi
             echo "Waiting for Pages deployment: $i"; sleep 5
           done
           echo "Style marker from live CSS:"
-          curl -fsSL "${SITE}styles.css" | grep -o "position-primary" | head -1
+          curl -fsSL "${SITE}styles.css" | grep -o "position-tools" | head -1
           echo "Chrome: $(command -v google-chrome || true)"
           google-chrome --headless=new --no-sandbox --disable-gpu --hide-scrollbars --disable-dev-shm-usage --window-size=1440,1000 --virtual-time-budget=2500 --screenshot=screenshots/desktop.png "${SITE}" >/tmp/chrome-desktop.log 2>&1 || { cat /tmp/chrome-desktop.log; exit 1; }
           google-chrome --headless=new --no-sandbox --disable-gpu --hide-scrollbars --disable-dev-shm-usage --window-size=390,844 --virtual-time-budget=2500 --screenshot=screenshots/mobile.png "${SITE}" >/tmp/chrome-mobile.log 2>&1 || { cat /tmp/chrome-mobile.log; exit 1; }
