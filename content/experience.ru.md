@@ -1,7 +1,7 @@
 <!-- Each ### starts a new position. The line below it is the employment period. -->
 
-### Exness - Senior Database Engineer
-*Август 2026 - настоящее время*
+### Exness — Senior Database Engineer
+*Август 2026 — настоящее время*
 
 - Эксплуатация и сопровождение высоконагруженных кластеров баз данных в production, обеспечение их доступности, производительности и отказоустойчивости.
 - Проведение массовых обновлений инфраструктуры баз данных, включая операционные системы, СУБД, прокси-сервисы, компоненты мониторинга и конфигурации.
@@ -16,9 +16,8 @@
 
 технологии и инструменты: PostgreSQL, MongoDB, Apache Cassandra, ClickHouse, PgBouncer, Linux, Argus, Prometheus, Grafana, Ansible, AWX, GitLab, Teleport
 
-
-### Сбер - Senior Database Administrator
-*Июль 2023 - август 2026*
+### Сбер — Senior Database Administrator
+*Июль 2023 — август 2026*
 
 - Миграция крупной высоконагруженной системы с Oracle на PostgreSQL, последующая оптимизация производительности и надёжности.
 - Комплексный анализ производительности PostgreSQL, профилирование нагрузки, выявление системных узких мест и избыточного потребления ресурсов.
@@ -33,11 +32,9 @@
 - Архитектурная экспертиза решений PostgreSQL и Greenplum, ревью SQL и моделей данных, техническое консультирование архитекторов, технических лидеров и разработчиков.
 - Проведение технических воркшопов по СУБД и оптимизации работы с базами данных.
 
-технологии и инструменты: PostgreSQL, Pangolin, Greenplum, pg_profile, pgstattuple, pg_stat_statements, Grafana, 
-
-
-### SberDevices - Senior Database Administrator
-*Май 2020 - июнь 2023*
+технологии и инструменты: PostgreSQL, Pangolin, Greenplum, pg_profile, pgstattuple, pg_stat_statements, Grafana
+### SberDevices — Senior Database Administrator
+*Май 2020 — июнь 2023*
 
 - Администрирование и обеспечение эксплуатационной надёжности более 300 кластеров PostgreSQL в промышленных и тестовых средах.
 - Анализ производительности PostgreSQL, выявление узких мест и оптимизация SQL-нагрузки критически важных сервисов.
@@ -49,9 +46,8 @@
 
 технологии и инструменты: PostgreSQL, SQL, Linux
 
-
-### InfoTech Group - Senior Database Administrator
-*Декабрь 2018 - май 2020*
+### InfoTech Group — Senior Database Administrator
+*Декабрь 2018 — май 2020*
 
 - Проектирование и сопровождение распределённых кластеров Apache Cassandra.
 - Разработка инструмента автоматизации миграций схем баз данных и управления изменениями между различными средами.
@@ -61,8 +57,8 @@
 
 технологии и инструменты: PostgreSQL, Apache Cassandra, SQL, логическая репликация, распределённые базы данных
 
-### FIX - Database Architect
-*Июль 2017 - декабрь 2018*
+### FIX — Database Architect
+*Июль 2017 — декабрь 2018*
 
 - Проектирование и внедрение архитектуры многосторонней логической репликации PostgreSQL на базе pglogical.
 - Проектирование и эксплуатация отказоустойчивых кластеров PostgreSQL.
@@ -72,8 +68,8 @@
 
 технологии и инструменты: PostgreSQL, pglogical, Apache HBase, SQL, репликация, высокая доступность, аварийное восстановление
 
-### ICL-KME CS - Database Administrator
-*Февраль 2014 - июль 2017*
+### ICL-KME CS — Database Administrator
+*Февраль 2014 — июль 2017*
 
 - Администрирование PostgreSQL в промышленных средах, обеспечение стабильности и производительности баз данных.
 - Анализ планов выполнения и оптимизация SQL-запросов.
