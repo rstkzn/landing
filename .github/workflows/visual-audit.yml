@@ -42,9 +42,19 @@ jobs:
             assert.equal(added[6].technologies,'PostgreSQL');
             console.log(lang + ': ' + roles.length + ' roles; synthetic job parsed');
           }
-          const html = fs.readFileSync('index.html','utf8');
+          const ruText=fs.readFileSync('content/experience.ru.md','utf8');
+          const enText=fs.readFileSync('content/experience.en.md','utf8');
+          const getHeaders = text => [...text.matchAll(/^### (.+)$/gm)].map(m=>m[1]);
+          const ruHeaders=getHeaders(ruText), enHeaders=getHeaders(enText);
+          assert.equal(ruHeaders.length, enHeaders.length, 'Role count matches');
+          assert.equal((ruText.match(/^- /gm)||[]).length,(enText.match(/^- /gm)||[]).length,'All experience bullets translated');
+          assert.ok(!/,(\\s*)$/m.test(ruText.split(/технологии и инструменты:/i)[1]?.split('\n')[0]||''),'No trailing comma in first technologies list');
+                    const html = fs.readFileSync('index.html','utf8');
           const typography = fs.readFileSync('config/typography.css','utf8');
           assert.match(html,/id="positions"/);
+          assert.equal((html.match(/linkedin.com\\/in\\/rustam-v\\//g)||[]).length,1,'One LinkedIn link');
+          assert.match(html,/mailto:rstkzn@yandex\\.ru/);
+          assert.match(html,/tel:\\+79173935321/);
           assert.doesNotMatch(html,/<article class="position/);
           assert.match(html,/config\/typography\.css/);
           for(const variable of ['--work-description-size','--work-description-line-height','--work-bullet-gap']){
@@ -92,6 +102,7 @@ jobs:
           grep -q '10 TB in 10 hours' /tmp/rendered.html
           if grep -q 'Could not load work history' /tmp/rendered.html; then echo "Markdown failed to load"; exit 1; fi
           google-chrome --headless=new --no-sandbox --disable-dev-shm-usage --disable-gpu --hide-scrollbars --window-size=1440,1000 --virtual-time-budget=4500 --screenshot=screenshots/desktop.png "${SITE}" >/tmp/chrome-desktop.log 2>&1
+          google-chrome --headless=new --no-sandbox --disable-dev-shm-usage --disable-gpu --hide-scrollbars --window-size=1366,768 --virtual-time-budget=4500 --screenshot=screenshots/laptop.png "${SITE}" >/tmp/chrome-laptop.log 2>&1
           google-chrome --headless=new --no-sandbox --disable-dev-shm-usage --disable-gpu --hide-scrollbars --window-size=390,844 --virtual-time-budget=4500 --screenshot=screenshots/mobile.png "${SITE}" >/tmp/chrome-mobile.log 2>&1
           ls -lh screenshots
       - name: Archive editable project and screenshots
