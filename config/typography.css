@@ -71,7 +71,7 @@ body { font-family: var(--body-font-family); font-size: var(--body-font-size); l
 .contact-content p,.contact-link { font-size: var(--contact-text-size); }
 .footer { font-size: var(--footer-text-size); }
 .portrait-frame { width: var(--portrait-desktop-size); height: var(--portrait-desktop-size); border-radius: 50%; overflow: hidden; }
-.portrait-frame img { border-radius: 50%; filter: none; object-fit: cover; }
+.portrait-frame img { display: block; width: 100%; height: 100%; border-radius: 50%; filter: none; object-fit: cover; object-position: center center; }
 .portrait-placeholder { border-radius: 50%; }
 .experience-loading,.experience-error { color: #68706d; font-size: var(--work-description-size); padding: 24px 0 50px; }
 @media (max-width: 650px) {
