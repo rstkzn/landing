@@ -37,24 +37,45 @@ Technologies: PostgreSQL, Pangolin, Greenplum, pg_profile, pgstattuple, pg_stat_
 ### SberDevices — Senior Database Administrator
 *May 2020 — Jun 2023*
 
-- Maintained more than 300 PostgreSQL clusters across testing and production environments.
-- Analyzed database workloads and optimized SQL for critical business applications.
-- Performed capacity planning and investigated production incidents; advised development teams on database design.
+- Administering and ensuring operational reliability of more than 300 PostgreSQL clusters across production and test environments.
+- Analyzing PostgreSQL performance, identifying bottlenecks and optimizing SQL workloads of business-critical services.
+- Diagnosing complex incidents, investigating root causes and resolving database performance and availability issues.
+- Monitoring cluster health, analyzing resource consumption and planning infrastructure capacity.
+- Planning maintenance, supporting infrastructure changes and improving PostgreSQL operational stability.
+- Advising developers on schema design, SQL optimization and efficient use of PostgreSQL.
+- Developing operational recommendations to improve performance, reliability and efficient use of database resources.
+
+Technologies: PostgreSQL, SQL, Linux
 
 ### InfoTech Group — Senior Database Administrator
 *Dec 2018 — May 2020*
 
-- Developed a tool to manage DDL migrations between multiple environments.
-- Designed and supported Apache Cassandra clusters, automated data consistency checks and worked with PostgreSQL logical replication.
+- Designing and operating distributed Apache Cassandra clusters.
+- Developing a tool to automate database schema migrations and manage changes across different environments.
+- Developing mechanisms for automated data consistency checks in distributed systems.
+- Designing and implementing PostgreSQL logical replication.
+- Diagnosing database performance problems and resolving complex operational issues.
+
+Technologies: PostgreSQL, Apache Cassandra, SQL, logical replication, distributed databases
 
 ### FIX — Database Architect
 *Jul 2017 — Dec 2018*
 
-- Designed and implemented multi-master PostgreSQL logical replication with pglogical.
-- Supported highly available PostgreSQL clusters and disaster-recovery operations; maintained a 15-node Apache HBase cluster.
+- Designing and implementing multidirectional PostgreSQL logical replication architecture based on pglogical.
+- Designing and operating highly available PostgreSQL clusters.
+- Reviewing data models, SQL queries and database schemas from an architectural perspective.
+- Developing and maintaining database disaster recovery procedures and restoring production environments after failures.
+- Administering a 15-node Apache HBase cluster, performing upgrades and recovery following failures.
+
+Technologies: PostgreSQL, pglogical, Apache HBase, SQL, replication, high availability, disaster recovery
 
 ### ICL-KME CS — Database Administrator
 *Feb 2014 — Jul 2017*
 
-- Administered PostgreSQL in production, analyzed SQL execution plans and investigated performance problems.
-- Developed PostgreSQL access-control mechanisms for Astra Linux-based solutions.
+- Administering PostgreSQL in production environments, ensuring database stability and performance.
+- Analyzing execution plans and optimizing SQL queries.
+- Investigating performance bottlenecks at the application and database levels.
+- Developing PostgreSQL access-control and privilege-management mechanisms for solutions based on Astra Linux.
+- Participating in database architecture design and enterprise system deployments together with development teams.
+
+Technologies: PostgreSQL, SQL, Astra Linux, Linux, access control, query optimization
