@@ -11,6 +11,8 @@ landing/
 ├── index.html                  # Page structure, no individual employers
 ├── script.js                   # Markdown parser and RU/EN switch
 ├── styles.css                  # Layout and styling
+├── assets/
+│   └── profile.webp           # Self-hosted color portrait
 ├── config/
 │   └── typography.css         # All text sizes, line heights, spacing
 ├── content/
@@ -96,7 +98,7 @@ For example:
 
 Use the variable declarations **already present** in the file rather than duplicating the `:root` block.
 
-The portrait is circular and in color. Currently the image URL points to LinkedIn; for a durable image, save a personal photo as an asset in the repository and update its path in `index.html`.
+The circular, full-bleed color portrait is stored locally at `assets/profile.webp`. The website uses `src="assets/profile.webp"` and does not depend on LinkedIn for the image. To replace it later, upload a new `assets/profile.webp` in the same format.
 
 ## Local preview
 
