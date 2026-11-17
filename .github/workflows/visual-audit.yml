@@ -73,7 +73,17 @@ jobs:
             echo "Waiting for current Pages build ($i)"
             sleep 5
           done
-          curl -fsSL "${SITE}assets/profile.webp" -o /tmp/profile.webp
+          # Allow GitHub Pages time to expose the newly committed binary asset.
+          photo_available=false
+          for attempt in $(seq 1 36); do
+            if curl -fsSL "${SITE}assets/profile.webp" -o /tmp/profile.webp && test "$(wc -c </tmp/profile.webp)" -gt 4000; then
+              photo_available=true
+              break
+            fi
+            echo "Profile image not yet deployed ($attempt)"
+            sleep 5
+          done
+          test "$photo_available" = true
           test "$(wc -c </tmp/profile.webp)" -gt 4000
           file /tmp/profile.webp | grep -q "Web/P image"
           google-chrome --headless=new --no-sandbox --disable-dev-shm-usage --disable-gpu --hide-scrollbars --window-size=1440,1000 --virtual-time-budget=4500 --dump-dom "${SITE}" > /tmp/rendered.html 2>/tmp/chrome-errors.txt
