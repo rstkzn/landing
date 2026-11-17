@@ -48,13 +48,14 @@ jobs:
           const ruHeaders=getHeaders(ruText), enHeaders=getHeaders(enText);
           assert.equal(ruHeaders.length, enHeaders.length, 'Role count matches');
           assert.equal((ruText.match(/^- /gm)||[]).length,(enText.match(/^- /gm)||[]).length,'All experience bullets translated');
-          assert.ok(!/,(\\s*)$/m.test(ruText.split(/технологии и инструменты:/i)[1]?.split('\n')[0]||''),'No trailing comma in first technologies list');
-                    const html = fs.readFileSync('index.html','utf8');
+          const firstTools=ruText.split(/технологии и инструменты:/i)[1]?.split('\n')[0] || '';
+          assert.ok(!firstTools.trim().endsWith(','), 'No trailing comma in first technologies list');
+          const html = fs.readFileSync('index.html','utf8');
           const typography = fs.readFileSync('config/typography.css','utf8');
           assert.match(html,/id="positions"/);
-          assert.equal((html.match(/linkedin.com\\/in\\/rustam-v\\//g)||[]).length,1,'One LinkedIn link');
-          assert.match(html,/mailto:rstkzn@yandex\\.ru/);
-          assert.match(html,/tel:\\+79173935321/);
+          assert.equal(html.split('linkedin.com/in/rustam-v/').length-1,1,'One LinkedIn link');
+          assert.ok(html.includes('mailto:rstkzn@yandex.ru'));
+          assert.ok(html.includes('tel:+79173935321'));
           assert.doesNotMatch(html,/<article class="position/);
           assert.match(html,/config\/typography\.css/);
           for(const variable of ['--work-description-size','--work-description-line-height','--work-bullet-gap']){
