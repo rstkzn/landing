@@ -1,4 +1,4 @@
-name: Visual audit
+name: CV website checks
 on:
   workflow_dispatch:
   push:
@@ -8,6 +8,8 @@ on:
       - 'index.html'
       - 'styles.css'
       - 'script.js'
+      - 'content/**'
+      - 'config/**'
 permissions:
   contents: read
 jobs:
@@ -15,31 +17,79 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
-      - name: Check live responses and capture browser screenshots
+      - name: Checkout source
+        uses: actions/checkout@v4
+      - name: Validate Markdown structure, dynamic roles and typography
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const assert = require('node:assert/strict');
+          const script = fs.readFileSync('script.js', 'utf8');
+          const parser = script.match(/function parseExperience\(markdown\) \{[\s\S]*?\n\}\n\nfunction renderInlineMarkdown/);
+          assert.ok(parser, 'Markdown parser function exists');
+          const parse = new Function(parser[0].replace(/\n\nfunction renderInlineMarkdown$/, '') + '\nreturn parseExperience;')();
+          for(const lang of ['en','ru']){
+            const markdown = fs.readFileSync('content/experience.' + lang + '.md','utf8');
+            const roles = parse(markdown);
+            assert.equal(roles.length, 6, 'Existing work history in ' + lang);
+            assert.ok(roles.every(r => r.company && r.title && r.dates && r.bullets.length));
+            const synthetic = markdown + '\n\n### Synthetic Employer — Database Engineer\n*2027 — Present*\n\n- Extra position.\n\nTechnologies: PostgreSQL\n';
+            const added = parse(synthetic);
+            assert.equal(added.length,7,'New job discovered from Markdown without touching HTML');
+            assert.equal(added[6].company,'Synthetic Employer');
+            assert.equal(added[6].technologies,'PostgreSQL');
+            console.log(lang + ': ' + roles.length + ' roles; synthetic job parsed');
+          }
+          const html = fs.readFileSync('index.html','utf8');
+          const typography = fs.readFileSync('config/typography.css','utf8');
+          assert.match(html,/id="positions"/);
+          assert.doesNotMatch(html,/<article class="position/);
+          assert.match(html,/config\/typography\.css/);
+          for(const variable of ['--work-description-size','--work-description-line-height','--work-bullet-gap']){
+            assert.ok(typography.includes(variable), 'Config has ' + variable);
+          }
+          assert.match(typography,/border-radius:\s*50%/);
+          assert.match(typography,/filter:\s*none/);
+          console.log('Dynamic rendering, editable config and circular color portrait: OK');
+          NODE
+      - name: Check live URL and capture screenshots
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p screenshots
           SITE="https://rstkzn.github.io/landing/"
-          for FILE in "" "styles.css" "script.js"; do
-            echo "URL ${SITE}${FILE}"
-            curl -sSL -o "/tmp/site_${FILE//\//_}" -w 'HTTP %{http_code}; size %{size_download}; time %{time_total}\n' --fail "${SITE}${FILE}"
+          for FILE in "" "styles.css" "script.js" "config/typography.css" "content/experience.en.md" "content/experience.ru.md"; do
+            echo "Checking ${SITE}${FILE}"
+            curl -fsSL "${SITE}${FILE}" -o /dev/null
           done
-          echo "Wait for the deployed CV version"
+          # Pages may deploy after this workflow starts. Wait for the new dynamic version.
           for i in $(seq 1 30); do
-            if curl -fsSL "${SITE}" | grep -q "10 TB in 10 hours" && curl -fsSL "${SITE}styles.css" | grep -q "position-tools"; then echo "Current CV and CSS are live"; break; fi
-            echo "Waiting for Pages deployment: $i"; sleep 5
+            if curl -fsSL "${SITE}" | grep -q 'id="positions"' && curl -fsSL "${SITE}config/typography.css" | grep -q -- '--work-description-size'; then
+              echo "Current dynamic CV is live"
+              break
+            fi
+            echo "Waiting for current Pages build ($i)"
+            sleep 5
           done
-          echo "Style marker from live CSS:"
-          curl -fsSL "${SITE}styles.css" | grep -o "position-tools" | head -1
-          echo "Chrome: $(command -v google-chrome || true)"
-          google-chrome --headless=new --no-sandbox --disable-gpu --hide-scrollbars --disable-dev-shm-usage --window-size=1440,1000 --virtual-time-budget=2500 --screenshot=screenshots/desktop.png "${SITE}" >/tmp/chrome-desktop.log 2>&1 || { cat /tmp/chrome-desktop.log; exit 1; }
-          google-chrome --headless=new --no-sandbox --disable-gpu --hide-scrollbars --disable-dev-shm-usage --window-size=390,844 --virtual-time-budget=2500 --screenshot=screenshots/mobile.png "${SITE}" >/tmp/chrome-mobile.log 2>&1 || { cat /tmp/chrome-mobile.log; exit 1; }
+          google-chrome --headless=new --no-sandbox --disable-dev-shm-usage --disable-gpu --hide-scrollbars --window-size=1440,1000 --virtual-time-budget=4500 --dump-dom "${SITE}" > /tmp/rendered.html 2>/tmp/chrome-errors.txt
+          grep -q 'position position-primary' /tmp/rendered.html
+          grep -q '10 TB in 10 hours' /tmp/rendered.html
+          if grep -q 'Could not load work history' /tmp/rendered.html; then echo "Markdown failed to load"; exit 1; fi
+          google-chrome --headless=new --no-sandbox --disable-dev-shm-usage --disable-gpu --hide-scrollbars --window-size=1440,1000 --virtual-time-budget=4500 --screenshot=screenshots/desktop.png "${SITE}" >/tmp/chrome-desktop.log 2>&1
+          google-chrome --headless=new --no-sandbox --disable-dev-shm-usage --disable-gpu --hide-scrollbars --window-size=390,844 --virtual-time-budget=4500 --screenshot=screenshots/mobile.png "${SITE}" >/tmp/chrome-mobile.log 2>&1
           ls -lh screenshots
-      - name: Upload screenshots
+      - name: Archive editable project and screenshots
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: visual-audit
-          path: screenshots/
-          retention-days: 2
+          name: rustam-portfolio-project
+          path: |
+            index.html
+            script.js
+            styles.css
+            content/
+            config/
+            README.md
+            screenshots/
+          retention-days: 7
