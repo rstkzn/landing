@@ -5,6 +5,9 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/visual-audit.yml'
+      - 'index.html'
+      - 'styles.css'
+      - 'script.js'
 permissions:
   contents: read
 jobs:
@@ -21,6 +24,11 @@ jobs:
           for FILE in "" "styles.css" "script.js"; do
             echo "URL ${SITE}${FILE}"
             curl -sSL -o "/tmp/site_${FILE//\//_}" -w 'HTTP %{http_code}; size %{size_download}; time %{time_total}\n' --fail "${SITE}${FILE}"
+          done
+          echo "Wait for the deployed CV version"
+          for i in $(seq 1 30); do
+            if curl -fsSL "${SITE}" | grep -q "10 TB in 10 hours"; then echo "Current CV is live"; break; fi
+            echo "Waiting for Pages deployment: $i"; sleep 5
           done
           echo "Chrome: $(command -v google-chrome || true)"
           google-chrome --headless=new --no-sandbox --disable-gpu --hide-scrollbars --disable-dev-shm-usage --window-size=1440,1000 --virtual-time-budget=2500 --screenshot=screenshots/desktop.png "${SITE}" >/tmp/chrome-desktop.log 2>&1 || { cat /tmp/chrome-desktop.log; exit 1; }
