@@ -1,109 +1,136 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#fcfcfa">
-<meta name="description" content="Rustam Valeev — Senior PostgreSQL Database Engineer. Replication, performance, data consistency and architecture.">
-<meta property="og:title" content="Rustam Valeev — Database Engineer">
-<meta property="og:description" content="Selected PostgreSQL engineering work and professional experience.">
-<meta property="og:type" content="website">
-<title>Rustam Valeev — PostgreSQL Database Engineer</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fafaf8">
+<meta name="description" content="Rustam Valeev — Senior Database Engineer. PostgreSQL performance, SQL optimization, data modeling, replication and production reliability.">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Rustam Valeev — Senior Database Engineer">
+<meta property="og:description" content="PostgreSQL, performance engineering and database systems. Experience and background.">
+<title>Rustam Valeev — Senior Database Engineer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<header class="site-header">
-  <div class="header-inner wrap">
-    <a href="#top" class="brand" aria-label="Rustam Valeev — home"><span class="brand-initials">RV<span class="brand-dot">.</span></span><span class="brand-full">Rustam Valeev</span></a>
-    <nav id="nav" aria-label="Main navigation">
-      <a href="#work" data-i="navWork">Work</a>
-      <a href="#about" data-i="navAbout">About</a>
-      <a href="#experience" data-i="navExp">Experience</a>
-      <a href="#contact" data-i="navContact">Contact</a>
-    </nav>
-    <div class="header-right"><button id="lang" class="lang" type="button" aria-label="Switch language">RU</button>
-      <a class="header-link" href="https://www.linkedin.com/in/rustam-v/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
-      <button class="menu" id="menu" type="button" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation"><span></span><span></span></button>
-    </div>
+<header class="header" id="top">
+ <div class="container header-inner">
+  <a href="#top" class="identity">Rustam Valeev</a>
+  <nav id="navigation" aria-label="Primary navigation">
+   <a href="#experience" data-i="navExperience">Experience</a>
+   <a href="#contact" data-i="navContact">Contact</a>
+  </nav>
+  <div class="header-actions">
+   <button id="lang" class="lang-control" type="button" aria-label="Switch to Russian">RU</button>
+   <a class="header-link" href="https://www.linkedin.com/in/rustam-v/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">LinkedIn <span aria-hidden="true">↗</span></a>
+   <button id="menu" type="button" class="mobile-menu" aria-controls="navigation" aria-expanded="false" aria-label="Open navigation"><span></span><span></span></button>
   </div>
+ </div>
 </header>
-<main>
-<section class="hero wrap" id="top">
-  <div class="hero-meta"><span data-i="heroLabel">PORTFOLIO / DATABASE ENGINEERING</span><span class="hero-meta-right">POSTGRESQL & DISTRIBUTED DATA SYSTEMS</span></div>
-  <div class="hero-grid">
-    <div class="hero-copy">
-      <h1>Rustam<br>Valeev<span class="title-period">.</span></h1>
-      <p class="hero-role">Senior Database Engineer <span>— PostgreSQL</span></p>
-      <p class="hero-summary" data-i="heroSummary">I work on PostgreSQL architecture, data replication and consistency, SQL performance, and difficult problems in production systems.</p>
-      <div class="hero-links">
-        <a href="#work" class="plain-link"><span data-i="heroWork">View selected work</span> <span aria-hidden="true">↗</span></a>
-        <a href="https://www.linkedin.com/in/rustam-v/" class="plain-link subtle" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
-      </div>
-    </div>
-    <figure class="hero-figure">
-      <div class="hero-portrait"><img id="profile" alt="Rustam Valeev" src="https://media.licdn.com/dms/image/v2/D4D03AQFuTA1V2HSNqA/profile-displayphoto-crop_800_800/B4DZ3kkVfhGwAI-/0/1777656225273?e=1796256000&amp;v=beta&amp;t=Z2874xrsdl6g3G94YrZQqnPV_hF-WW7_Of5A-Q-boio"><span class="photo-fallback" aria-hidden="true">RV.</span></div>
-      <figcaption><span>RUSTAM VALEEV</span><span data-i="photoCaption">DATABASE ENGINEERING</span></figcaption>
-    </figure>
+<main class="container">
+ <section class="intro" aria-labelledby="page-title">
+  <div class="intro-content">
+    <p class="overline" data-i="introKicker">DATABASE ENGINEER / POSTGRESQL</p>
+    <h1 id="page-title">Rustam Valeev<span class="dot">.</span></h1>
+    <p class="intro-role">Senior Database Engineer</p>
+    <p class="intro-summary" data-i="introSummary">I work on the performance and reliability of production database systems, primarily PostgreSQL: SQL workloads, physical data design, replication and complex incident analysis.</p>
+    <p class="intro-details" data-i="introDetails">SQL &amp; performance · Data modeling · Replication · Reliability</p>
   </div>
-  <div class="hero-bottom"><span data-i="heroBottom">Architecture / Replication / Performance / Reliability</span><a href="#work" aria-label="Scroll to work">↓</a></div>
-</section>
-<section id="work" class="section work-section">
-  <div class="wrap section-shell">
-    <div class="section-rail"><span>01</span><span data-i="workLabel">SELECTED WORK</span></div>
-    <div class="section-content">
-      <div class="section-heading"><h2 data-i="workHead">Selected work.</h2><p data-i="workIntro">Engineering problems, technical decisions and outcomes from PostgreSQL and data-platform projects.</p></div>
-      <div class="project-grid">
-<article class="project featured"><div class="project-top"><span class="project-num">PROJECT 01</span><span class="project-category">REPLICATION / DATA MOVEMENT</span></div><div class="project-main"><div><h3 data-i="p1Title">Parallel initial load for PostgreSQL logical replication</h3><p data-i="p1Desc">Built an initial synchronization mechanism that parallelizes copying within individual tables, rather than being constrained to table-level concurrency. Parallelism is calculated from data volume; non-overlapping ranges are formed using <code>mod(id, N)</code>, with streaming through <code>psql</code> and pipes instead of intermediate dumps.</p><div class="project-stack"><span>PostgreSQL</span><span>Logical replication</span><span>psql</span><span>Streaming</span></div></div><div class="project-metric"><strong>5 TB</strong><span data-i="p1Metric">initial load completed in 5 hours</span></div></div></article>
-<article class="project"><div class="project-top"><span class="project-num">PROJECT 02</span><span class="project-category">CONSISTENCY / CDC</span></div><h3 data-i="p2Title">Data reconciliation beyond replication status</h3><p data-i="p2Desc">Developed a tool to compare large source and target datasets and pinpoint discrepancies at row level. Designed for CDC result verification and detecting accumulated divergence between actual data states.</p><div class="project-stack"><span>PostgreSQL</span><span>CDC</span><span>Data validation</span></div></article>
-<article class="project"><div class="project-top"><span class="project-num">PROJECT 03</span><span class="project-category">CONCURRENCY / DATA MODELING</span></div><h3 data-i="p3Title">Concurrent deduplication for partitioned tables</h3><p data-i="p3Desc">Implemented a registration mechanism with a compact key registry and UNIQUE index, bounded key retention, and periodic TRUNCATE cleanup to support concurrent deduplication in partitioned Pangolin tables.</p><div class="project-stack"><span>Concurrency</span><span>UNIQUE index</span><span>Partitioning</span></div></article>
-<article class="project"><div class="project-top"><span class="project-num">PROJECT 04</span><span class="project-category">STORAGE / PERFORMANCE</span></div><h3 data-i="p4Title">Workload-driven data and index redesign</h3><p data-i="p4Desc">Analyzed SQL workload with pg_profile, execution plans and resource consumption; revised data types and index structures to reduce the storage footprint while accounting for buffer-cache pressure and I/O costs.</p><div class="project-footer"><span class="project-stack"><span>pg_profile</span><span>Index design</span><span>SQL tuning</span></span><strong class="inline-metric">−30% <small data-i="p4Metric">storage</small></strong></div></article>
-<article class="project"><div class="project-top"><span class="project-num">PROJECT 05</span><span class="project-category">REPLICATION ARCHITECTURE</span></div><h3 data-i="p5Title">Replication-consistent initialization strategy</h3><p data-i="p5Desc">Designed an initialization approach based on a physical replica: pausing WAL replay, recording an LSN and aligning the initial data copy with the position of the logical replication slot.</p><div class="project-stack"><span>WAL</span><span>LSN</span><span>Replication slots</span></div></article>
-<article class="project"><div class="project-top"><span class="project-num">PROJECT 06</span><span class="project-category">DISTRIBUTED SYSTEMS</span></div><h3 data-i="p6Title">Data distribution and multi-master replication</h3><p data-i="p6Desc">Designed Greenplum distribution keys for join locality and reduced Motion operations. Earlier, designed and implemented a PostgreSQL multi-master logical replication topology using pglogical.</p><div class="project-stack"><span>Greenplum</span><span>MPP</span><span>pglogical</span></div></article>
-</div>
-    </div>
+  <figure class="portrait">
+   <div class="portrait-frame"><img id="profile" src="https://media.licdn.com/dms/image/v2/D4D03AQFuTA1V2HSNqA/profile-displayphoto-crop_800_800/B4DZ3kkVfhGwAI-/0/1777656225273?e=1796256000&amp;v=beta&amp;t=Z2874xrsdl6g3G94YrZQqnPV_hF-WW7_Of5A-Q-boio" alt="Portrait of Rustam Valeev" width="800" height="800" loading="eager" referrerpolicy="no-referrer"><span class="portrait-placeholder" aria-hidden="true">RV</span></div>
+  </figure>
+ </section>
+ <section class="experience" id="experience" aria-labelledby="experience-title">
+   <div class="section-header"><h2 id="experience-title" data-i="experienceTitle">Experience</h2><span class="section-side">2014 — 2026</span></div>
+   <div class="positions"><article class="position position-primary" aria-labelledby="job-0">
+  <div class="position-date"><span data-i="date0">Aug 2026 — Present</span></div>
+  <div class="position-content">
+    <div class="position-heading"><h3 id="job-0">Exness</h3><p class="position-role">Senior Database Engineer</p></div>
+    <ul><li><span data-i="item0_0">Operating and maintaining high-load production database clusters, focusing on availability, performance and fault tolerance.</span></li>
+<li><span data-i="item0_1">Carrying out infrastructure-wide upgrades across operating systems, database engines, proxies, monitoring components and configurations.</span></li>
+<li><span data-i="item0_2">Troubleshooting infrastructure changes across legacy installations and heterogeneous environments.</span></li>
+<li><span data-i="item0_3">Investigating database performance, resource-intensive queries, bottlenecks and performance degradation under load.</span></li>
+<li><span data-i="item0_4">Optimizing SQL, index structures and data models against actual workload characteristics.</span></li>
+<li><span data-i="item0_5">Working with replication, high availability and failover mechanisms; evaluating changes to cluster architecture.</span></li>
+<li><span data-i="item0_6">Investigating production incidents, identifying root causes and resolving issues affecting service availability and stability.</span></li>
+<li><span data-i="item0_7">Monitoring database clusters, analyzing operational metrics and maintaining observability components.</span></li>
+<li><span data-i="item0_8">Applying infrastructure changes with Ansible and AWX, troubleshooting automation and maintaining configurations.</span></li>
+<li><span data-i="item0_9">Supporting development teams and internal users, including diagnosis of application–database interactions.</span></li></ul>
+    <p class="position-tools"><span class="tools-label" data-i="toolsLabel">Tools & technologies</span><span class="tools-list">PostgreSQL, MongoDB, Apache Cassandra, ClickHouse, PgBouncer, Linux, Argus, Prometheus, Grafana, Ansible, AWX, GitLab, Teleport</span></p>
   </div>
-</section>
-<section id="about" class="section about-section">
-  <div class="wrap section-shell">
-    <div class="section-rail"><span>02</span><span data-i="aboutLabel">ABOUT</span></div>
-    <div class="section-content">
-      <h2 class="about-heading" data-i="aboutHead">Database engineering.<br>Architecture to implementation.</h2>
-      <div class="about-grid"><p data-i="aboutP1">My background spans production PostgreSQL infrastructure, database architecture, performance investigation, and tooling for data movement and verification. I work at the boundary between SQL behavior, storage design, replication semantics, and operational reliability.</p><p data-i="aboutP2">I care about understanding why a system behaves the way it does, identifying the real constraint, and designing a solution that remains correct under load and failure conditions.</p></div>
-      <div class="skill-block"><h3 data-i="expertiseLabel">Tools & areas</h3><div class="skill-tags"><span>PostgreSQL</span><span>Logical replication</span><span>WAL / LSN</span><span>SQL performance</span><span>Data consistency</span><span>Greenplum / MPP</span><span>High availability</span><span>CDC</span><span>PgBouncer</span><span>pglogical</span></div></div>
-    </div>
+</article>
+<article class="position position-primary" aria-labelledby="job-1">
+  <div class="position-date"><span data-i="date1">Jul 2023 — Aug 2026</span></div>
+  <div class="position-content">
+    <div class="position-heading"><h3 id="job-1"><span data-i="company1">Sber</span></h3><p class="position-role">Senior Database Administrator</p></div>
+    <ul><li><span data-i="item1_0">Migrating a large, high-load system from Oracle to PostgreSQL, followed by performance and reliability optimization.</span></li>
+<li><span data-i="item1_1">Analyzing PostgreSQL performance and workload profiles, identifying system-level bottlenecks and excessive resource usage.</span></li>
+<li><span data-i="item1_2">Optimizing complex SQL and execution plans, improving the performance of critical queries by orders of magnitude.</span></li>
+<li><span data-i="item1_3">Designing PostgreSQL physical data models and indexing strategies for read, insert and update workloads.</span></li>
+<li><span data-i="item1_4">Optimizing data and index storage, reducing the footprint from 20 TB to 10 TB and identifying further reduction opportunities.</span></li>
+<li><span data-i="item1_5">Designing Greenplum data distribution for local joins and reduced inter-segment data movement.</span></li>
+<li><span data-i="item1_6">Developing a parallel initial-load mechanism for PostgreSQL logical replication; transferred 10 TB in 10 hours.</span></li>
+<li><span data-i="item1_7">Developing a large-scale data reconciliation tool to identify discrepancies between source and target, including accumulated CDC errors.</span></li>
+<li><span data-i="item1_8">Developing a lightweight uniqueness mechanism for partitioned Pangolin tables without global indexes.</span></li>
+<li><span data-i="item1_9">Investigating critical PostgreSQL production incidents and resolving the underlying performance and reliability issues.</span></li>
+<li><span data-i="item1_10">Reviewing PostgreSQL and Greenplum architecture, SQL and data models; advising architects, tech leads and developers.</span></li>
+<li><span data-i="item1_11">Delivering technical workshops on database systems and performance optimization.</span></li></ul>
+    <p class="position-tools"><span class="tools-label" data-i="toolsLabel">Tools & technologies</span><span class="tools-list">PostgreSQL, Pangolin, Greenplum, pg_profile, pgstattuple, pg_stat_statements, Grafana</span></p>
   </div>
-</section>
-<section id="experience" class="section experience-section">
-  <div class="wrap section-shell">
-    <div class="section-rail"><span>03</span><span data-i="experienceLabel">EXPERIENCE</span></div>
-    <div class="section-content">
-      <div class="section-heading"><h2 data-i="expHead">Experience.</h2><p data-i="expIntro">Production PostgreSQL engineering, data platforms, and architecture since 2014.</p></div>
-      <div class="timeline">
-<div class="job"><div class="job-date" data-i="ex1Date">Aug 2026 — Present</div><div class="job-body"><div class="job-title"><h3>Exness</h3><span>Senior Database Engineer</span></div><p data-i="ex1">PostgreSQL platform architecture: replication topologies, consistency models and failover strategies; complex SQL performance investigation, production incident leadership and root-cause analysis. Production infrastructure changes across a large cluster fleet.</p></div></div>
-<div class="job"><div class="job-date" data-i="ex2Date">Jul 2023 — Aug 2026</div><div class="job-body"><div class="job-title"><h3>Sber</h3><span>Senior Database Administrator</span></div><p data-i="ex2">Oracle-to-PostgreSQL migration, custom logical-replication initialization, CDC verification tooling, storage and SQL optimization, Greenplum data distribution, architecture reviews and developer workshops.</p></div></div>
-<div class="job"><div class="job-date" data-i="ex3Date">May 2020 — Jun 2023</div><div class="job-body"><div class="job-title"><h3>SberDevices</h3><span>Senior Database Administrator</span></div><p data-i="ex3">Production PostgreSQL operations across a fleet exceeding 300 clusters in development and production environments; workload tuning, capacity planning and incident investigation.</p></div></div>
-<div class="job"><div class="job-date" data-i="ex4Date">Dec 2018 — May 2020</div><div class="job-body"><div class="job-title"><h3>InfoTech Group</h3><span>Senior Database Administrator</span></div><p data-i="ex4">Developed a multi-environment DDL migration tool; worked with PostgreSQL logical replication, Apache Cassandra distributed clusters and data consistency checks.</p></div></div>
-<div class="job"><div class="job-date" data-i="ex5Date">Jul 2017 — Dec 2018</div><div class="job-body"><div class="job-title"><h3>FIX</h3><span>Database Architect</span></div><p data-i="ex5">Implemented a multi-master PostgreSQL replication topology with pglogical; contributed to disaster recovery and maintained a 15-node Apache HBase cluster.</p></div></div>
-<div class="job"><div class="job-date" data-i="ex6Date">Feb 2014 — Jul 2017</div><div class="job-body"><div class="job-title"><h3>ICL-KME CS</h3><span>Database Administrator</span></div><p data-i="ex6">Production PostgreSQL, SQL-plan analysis, database/application performance investigations, and access-control mechanisms for Astra Linux-based solutions.</p></div></div>
-</div>
-    </div>
+</article>
+<article class="position position-secondary" aria-labelledby="job-2">
+  <div class="position-date"><span data-i="date2">May 2020 — Jun 2023</span></div>
+  <div class="position-content">
+    <div class="position-heading"><h3 id="job-2">SberDevices</h3><p class="position-role">Senior Database Administrator</p></div>
+    <ul><li><span data-i="item2_0">Maintained more than 300 PostgreSQL clusters across testing and production environments.</span></li>
+<li><span data-i="item2_1">Analyzed database workloads and optimized SQL for critical business applications.</span></li>
+<li><span data-i="item2_2">Performed capacity planning and investigated production incidents; advised development teams on database design.</span></li></ul>
+    
   </div>
-</section>
-<section id="contact" class="section contact-section">
-  <div class="wrap section-shell">
-    <div class="section-rail"><span>04</span><span data-i="contactLabel">CONTACT</span></div>
-    <div class="section-content contact-content">
-      <h2 data-i="contactHead">Get in touch.</h2>
-      <p data-i="contactBody">For conversations about PostgreSQL, database architecture, reliability and performance.</p>
-      <a href="https://www.linkedin.com/in/rustam-v/" class="contact-link" target="_blank" rel="noopener noreferrer"><span data-i="connect">LinkedIn profile</span> <span aria-hidden="true">↗</span></a>
-    </div>
+</article>
+<article class="position position-secondary" aria-labelledby="job-3">
+  <div class="position-date"><span data-i="date3">Dec 2018 — May 2020</span></div>
+  <div class="position-content">
+    <div class="position-heading"><h3 id="job-3">InfoTech Group</h3><p class="position-role">Senior Database Administrator</p></div>
+    <ul><li><span data-i="item3_0">Developed a tool to manage DDL migrations between multiple environments.</span></li>
+<li><span data-i="item3_1">Designed and supported Apache Cassandra clusters, automated data consistency checks and worked with PostgreSQL logical replication.</span></li></ul>
+    
   </div>
-</section>
+</article>
+<article class="position position-secondary" aria-labelledby="job-4">
+  <div class="position-date"><span data-i="date4">Jul 2017 — Dec 2018</span></div>
+  <div class="position-content">
+    <div class="position-heading"><h3 id="job-4">FIX</h3><p class="position-role">Database Architect</p></div>
+    <ul><li><span data-i="item4_0">Designed and implemented multi-master PostgreSQL logical replication with pglogical.</span></li>
+<li><span data-i="item4_1">Supported highly available PostgreSQL clusters and disaster-recovery operations; maintained a 15-node Apache HBase cluster.</span></li></ul>
+    
+  </div>
+</article>
+<article class="position position-secondary" aria-labelledby="job-5">
+  <div class="position-date"><span data-i="date5">Feb 2014 — Jul 2017</span></div>
+  <div class="position-content">
+    <div class="position-heading"><h3 id="job-5">ICL-KME CS</h3><p class="position-role">Database Administrator</p></div>
+    <ul><li><span data-i="item5_0">Administered PostgreSQL in production, analyzed SQL execution plans and investigated performance problems.</span></li>
+<li><span data-i="item5_1">Developed PostgreSQL access-control mechanisms for Astra Linux-based solutions.</span></li></ul>
+    
+  </div>
+</article></div>
+ </section>
+ <section class="contact" id="contact" aria-labelledby="contact-title">
+  <div class="section-header"><h2 id="contact-title" data-i="contactTitle">Contact</h2></div>
+  <div class="contact-content">
+   <p data-i="contactText">For professional inquiries and discussions about PostgreSQL and database systems.</p>
+   <a href="https://www.linkedin.com/in/rustam-v/" target="_blank" rel="noopener noreferrer" class="contact-link" data-i="contactLink">LinkedIn profile ↗</a>
+  </div>
+ </section>
 </main>
-<footer class="footer wrap"><span>© <span id="year">2026</span> Rustam Valeev</span><span data-i="footer">PostgreSQL · Database Engineering</span><a href="#top" data-i="back">Back to top ↑</a></footer>
+<footer class="container footer">
+  <span>© <span id="year">2026</span> Rustam Valeev</span>
+  <span data-i="footerNote">Senior Database Engineer · PostgreSQL</span>
+  <a href="#top" aria-label="Back to top">↑</a>
+</footer>
 <script src="script.js"></script>
 </body>
 </html>
