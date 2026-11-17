@@ -12,7 +12,7 @@
 :root {
   /* Global typography */
   --body-font-family: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --body-font-size: 14px;
+  --body-font-size: 15px;
   --body-line-height: 1.75;
 
   /* Header and personal details */
@@ -21,8 +21,8 @@
   --name-font-size: clamp(49px, 7vw, 82px);
   --name-line-height: 1.12;
   --job-title-size: 17px;
-  --intro-description-size: 14px;
-  --intro-description-line-height: 1.95;
+  --intro-description-size: 15px;
+  --intro-description-line-height: 1.7;
   --intro-detail-size: 12px;
 
   /* Section and role headings */
@@ -32,20 +32,20 @@
   --employment-dates-size: 13px;
 
   /* Work description – change these most often */
-  --work-description-size: 14px;
-  --work-description-line-height: 1.6;
-  --work-bullet-gap: 6px;
-  --work-role-gap: 40px;
-  --work-block-top-padding: 36px;
-  --work-block-bottom-padding: 42px;
+  --work-description-size: 15px;
+  --work-description-line-height: 1.65;
+  --work-bullet-gap: 7px;
+  --work-role-gap: 24px;
+  --work-block-top-padding: 28px;
+  --work-block-bottom-padding: 30px;
 
   /* Technology lists */
-  --technology-size: 12px;
+  --technology-size: 13px;
   --technology-line-height: 1.8;
-  --technology-label-size: 11px;
+  --technology-label-size: 12px;
 
   /* Contact and footer */
-  --contact-text-size: 13px;
+  --contact-text-size: 14px;
   --footer-text-size: 11px;
 
   /* Portrait – color, round */
