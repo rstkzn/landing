@@ -1,0 +1,81 @@
+/*
+ * TYPOGRAPHY & SPACING SETTINGS
+ * Edit values below to adjust the site without touching styles.css.
+ * Examples:
+ * --work-description-size: 15px;
+ * --work-description-line-height: 2;
+ * --work-bullet-gap: 16px;
+ *
+ * Valid line-height values: 1.5, 1.8, 2, etc. (unitless)
+ * Valid sizes: px, rem, clamp(...).
+ */
+:root {
+  /* Global typography */
+  --body-font-family: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --body-font-size: 14px;
+  --body-line-height: 1.75;
+
+  /* Header and personal details */
+  --brand-font-size: 13px;
+  --navigation-font-size: 12px;
+  --name-font-size: clamp(49px, 7vw, 82px);
+  --name-line-height: 1.12;
+  --job-title-size: 17px;
+  --intro-description-size: 14px;
+  --intro-description-line-height: 1.95;
+  --intro-detail-size: 12px;
+
+  /* Section and role headings */
+  --section-title-size: 28px;
+  --employer-name-size: 21px;
+  --role-title-size: 12px;
+  --employment-dates-size: 12px;
+
+  /* Work description – change these most often */
+  --work-description-size: 14px;
+  --work-description-line-height: 1.9;
+  --work-bullet-gap: 12px;
+  --work-role-gap: 40px;
+  --work-block-top-padding: 36px;
+  --work-block-bottom-padding: 42px;
+
+  /* Technology lists */
+  --technology-size: 12px;
+  --technology-line-height: 1.8;
+  --technology-label-size: 11px;
+
+  /* Contact and footer */
+  --contact-text-size: 13px;
+  --footer-text-size: 11px;
+
+  /* Portrait – color, round */
+  --portrait-desktop-size: 214px;
+  --portrait-mobile-size: 136px;
+}
+body { font-family: var(--body-font-family); font-size: var(--body-font-size); line-height: var(--body-line-height); }
+.identity { font-size: var(--brand-font-size); }
+.header nav a,.header-link,.lang-control { font-size: var(--navigation-font-size); }
+.intro h1 { font-size: var(--name-font-size); line-height: var(--name-line-height); }
+.intro-role { font-size: var(--job-title-size); }
+.intro-summary { font-size: var(--intro-description-size); line-height: var(--intro-description-line-height); }
+.intro-details { font-size: var(--intro-detail-size); }
+.section-header h2 { font-size: var(--section-title-size); }
+.position-heading h3 { font-size: var(--employer-name-size); }
+.position-role { font-size: var(--role-title-size); }
+.position-date { font-size: var(--employment-dates-size); }
+.position { gap: var(--work-role-gap); padding-top: var(--work-block-top-padding); padding-bottom: var(--work-block-bottom-padding); }
+.position li { font-size: var(--work-description-size); line-height: var(--work-description-line-height); margin-bottom: var(--work-bullet-gap); }
+.position li:last-child { margin-bottom: 0; }
+.tools-list { font-size: var(--technology-size); line-height: var(--technology-line-height); }
+.tools-label { font-size: var(--technology-label-size); }
+.contact-content p,.contact-link { font-size: var(--contact-text-size); }
+.footer { font-size: var(--footer-text-size); }
+.portrait-frame { width: var(--portrait-desktop-size); height: var(--portrait-desktop-size); border-radius: 50%; overflow: hidden; }
+.portrait-frame img { border-radius: 50%; filter: none; object-fit: cover; }
+.portrait-placeholder { border-radius: 50%; }
+.experience-loading,.experience-error { color: #68706d; font-size: var(--work-description-size); padding: 24px 0 50px; }
+@media (max-width: 650px) {
+  .position { gap: 10px; }
+  .portrait-frame { width: var(--portrait-mobile-size); height: var(--portrait-mobile-size); }
+  .intro h1 { font-size: min(12vw, 72px); }
+}
