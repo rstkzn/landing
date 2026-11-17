@@ -76,8 +76,8 @@ jobs:
           curl -fsSL "${SITE}assets/profile.webp" -o /tmp/profile.webp
           test "$(wc -c </tmp/profile.webp)" -gt 4000
           file /tmp/profile.webp | grep -q "Web/P image"
-          grep -q 'assets/profile.webp' /tmp/rendered.html
           google-chrome --headless=new --no-sandbox --disable-dev-shm-usage --disable-gpu --hide-scrollbars --window-size=1440,1000 --virtual-time-budget=4500 --dump-dom "${SITE}" > /tmp/rendered.html 2>/tmp/chrome-errors.txt
+          grep -q 'assets/profile.webp' /tmp/rendered.html
           grep -q 'position position-primary' /tmp/rendered.html
           grep -q '10 TB in 10 hours' /tmp/rendered.html
           if grep -q 'Could not load work history' /tmp/rendered.html; then echo "Markdown failed to load"; exit 1; fi
@@ -95,6 +95,7 @@ jobs:
             styles.css
             content/
             config/
+            assets/
             README.md
             screenshots/
           retention-days: 7
