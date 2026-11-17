@@ -29,7 +29,7 @@
   --section-title-size: 28px;
   --employer-name-size: 21px;
   --role-title-size: 12px;
-  --employment-dates-size: 12px;
+  --employment-dates-size: 13px;
 
   /* Work description – change these most often */
   --work-description-size: 14px;
@@ -62,7 +62,7 @@ body { font-family: var(--body-font-family); font-size: var(--body-font-size); l
 .section-header h2 { font-size: var(--section-title-size); }
 .position-heading h3 { font-size: var(--employer-name-size); }
 .position-role { font-size: var(--role-title-size); }
-.position-date { font-size: var(--employment-dates-size); }
+.position-date { font-size: var(--employment-dates-size); color: #404943; font-weight: 500; }
 .position { gap: var(--work-role-gap); padding-top: var(--work-block-top-padding); padding-bottom: var(--work-block-bottom-padding); }
 .position li { font-size: var(--work-description-size); line-height: var(--work-description-line-height); margin-bottom: var(--work-bullet-gap); }
 .position li:last-child { margin-bottom: 0; }
