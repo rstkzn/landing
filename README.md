@@ -11,6 +11,9 @@ landing/
 ├── index.html                  # Page structure, no individual employers
 ├── script.js                   # Markdown parser and RU/EN switch
 ├── pdf.js                      # On-demand bilingual PDF generator (pdfmake)
+├── vendor/
+│   ├── pdfmake.min.js          # Pinned self-hosted PDF engine
+│   └── vfs_fonts.js            # Embedded Unicode fonts (incl. Cyrillic)
 ├── styles.css                  # Layout and styling
 ├── assets/
 │   └── profile.webp           # Self-hosted color portrait
@@ -76,7 +79,7 @@ The **Download PDF / Скачать PDF** button builds a fresh PDF in the visit
 - Professional summary and education are taken from the language dictionary in `script.js`.
 - Phone, email and LinkedIn are included in the output.
 - No pre-generated PDFs are stored in this repository or on GitHub Pages.
-- `pdf.js` lazily loads the pinned MIT-licensed pdfmake 0.2.23 engine and bundled Roboto font data (including Cyrillic), using a second CDN as fallback.
+- `pdf.js` lazily loads the pinned MIT-licensed pdfmake 0.2.23 engine and bundled Roboto font data (including Cyrillic) from local `vendor/` files, with CDN mirrors only as a fallback.
 - No server-side services or GitHub Actions are required to create a PDF for visitors.
 
 The generated file is named `Rustam_Valeev_CV_EN.pdf` or `Rustam_Valeev_CV_RU.pdf`.
