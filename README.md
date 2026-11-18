@@ -10,6 +10,7 @@ Website: https://rstkzn.github.io/landing/
 landing/
 ├── index.html                  # Page structure, no individual employers
 ├── script.js                   # Markdown parser and RU/EN switch
+├── pdf.js                      # On-demand bilingual PDF generator (pdfmake)
 ├── styles.css                  # Layout and styling
 ├── assets/
 │   └── profile.webp           # Self-hosted color portrait
@@ -66,6 +67,19 @@ Russian version:
 - Job entries appear in **file order**, so place the newest job first.
 
 **Publishing:** commit edits to `main`. GitHub Pages republishes the site; refresh the website to retrieve the updated Markdown. No `index.html` or JavaScript edits are required to add jobs.
+
+## Download CV as PDF
+
+The **Download PDF / Скачать PDF** button builds a fresh PDF in the visitor's browser for the currently selected language.
+
+- Experience is fetched from `content/experience.en.md` or `content/experience.ru.md` at the time of the click.
+- Professional summary and education are taken from the language dictionary in `script.js`.
+- Phone, email and LinkedIn are included in the output.
+- No pre-generated PDFs are stored in this repository or on GitHub Pages.
+- `pdf.js` lazily loads the pinned MIT-licensed pdfmake 0.2.23 engine and bundled Roboto font data (including Cyrillic), using a second CDN as fallback.
+- No server-side services or GitHub Actions are required to create a PDF for visitors.
+
+The generated file is named `Rustam_Valeev_CV_EN.pdf` or `Rustam_Valeev_CV_RU.pdf`.
 
 ## Customize all font sizes and spacing
 
