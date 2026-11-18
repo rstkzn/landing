@@ -205,4 +205,5 @@ jobs:
             assets/
             README.md
             screenshots/
+            pdf-check/
           retention-days: 7
