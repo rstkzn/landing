@@ -14,6 +14,7 @@
   if (!button) return;
 
   const resources = [
+    ["vendor/pdfmake.min.js", "vendor/vfs_fonts.js"],
     [
       "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.23/pdfmake.min.js",
       "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.23/vfs_fonts.min.js"
