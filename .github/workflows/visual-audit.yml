@@ -84,7 +84,7 @@ jobs:
           done
           # Pages may deploy after this workflow starts. Wait for the new dynamic version.
           for i in $(seq 1 30); do
-            if curl -fsSL "${SITE}" | grep -q 'mailto:rstkzn@yandex.ru' && curl -fsSL "${SITE}styles.css" | grep -q 'contact-methods' && curl -fsSL "${SITE}config/typography.css" | grep -q 'work-description-size: 15px'; then
+            if curl -fsSL "${SITE}" | grep -q 'id="education"' && curl -fsSL "${SITE}script.js" | grep -q 'Automated Information Processing and Control Systems' && curl -fsSL "${SITE}content/experience.en.md" | grep -q 'more than 600 PostgreSQL clusters'; then
               echo "Current dynamic CV is live"
               break
             fi
