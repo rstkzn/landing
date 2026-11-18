@@ -1,7 +1,7 @@
 <!-- Each ### heading starts a new position. The next line is the employment period. -->
 
-### Exness — Senior Database Engineer
-*August 2026 — Present*
+### Exness - Senior Database Engineer
+*August 2026 - Present*
 
 - Operating and supporting high-load database clusters in production, ensuring availability, performance, and fault tolerance.
 - Performing fleet-wide database infrastructure upgrades, including operating systems, database engines, proxy services, monitoring components, and configurations.
@@ -12,13 +12,13 @@
 - Investigating production incidents, performing root cause analysis, and resolving issues affecting service availability and stability.
 - Monitoring cluster health, analyzing operational metrics, and maintaining observability components.
 - Implementing infrastructure changes with Ansible and AWX, troubleshooting automation failures, and maintaining configurations.
-- Providing technical support to development teams and internal customers, diagnosing issues in application–database interactions.
+- Providing technical support to development teams and internal customers, diagnosing issues in application-database interactions.
 - Using OpenAI Codex for engineering tasks, code analysis, and improving the efficiency of database infrastructure work.
 
 Technologies: PostgreSQL, Codex, MongoDB, repmgr, ClickHouse, PgBouncer, Argus, Prometheus, Grafana, Ansible, AWX, GitLab, Teleport
 
-### Sber — Senior Database Administrator
-*July 2023 — August 2026*
+### Sber - Senior Database Administrator
+*July 2023 - August 2026*
 
 - Migrating a large high-load system from Oracle to PostgreSQL, followed by performance and reliability optimization.
 - Conducting comprehensive PostgreSQL performance analysis and workload profiling, identifying system-level bottlenecks and excessive resource consumption.
@@ -36,8 +36,8 @@ Technologies: PostgreSQL, Codex, MongoDB, repmgr, ClickHouse, PgBouncer, Argus, 
 
 Technologies: Pangolin, Greenplum, tsvector, pg_profile, pgstattuple, pg_stat_*, Grafana, GigaCode
 
-### SberDevices — Senior Database Administrator
-*May 2020 — June 2023*
+### SberDevices - Senior Database Administrator
+*May 2020 - June 2023*
 
 - Administering and ensuring the operational reliability of more than 600 PostgreSQL clusters across production and test environments.
 - Preparing storage infrastructure for the launch of the Salyut family of virtual-assistant services.
@@ -50,8 +50,8 @@ Technologies: Pangolin, Greenplum, tsvector, pg_profile, pgstattuple, pg_stat_*,
 
 Technologies: PostgreSQL, tsvector, Patroni, etcd, postgres_exporter, pgbackrest
 
-### InfoTech Group — Senior Database Administrator
-*December 2018 — May 2020*
+### InfoTech Group - Senior Database Administrator
+*December 2018 - May 2020*
 
 - Designing and maintaining distributed Apache Cassandra clusters.
 - Developing a tool to automate database schema migrations and manage changes across environments.
@@ -62,8 +62,8 @@ Technologies: PostgreSQL, tsvector, Patroni, etcd, postgres_exporter, pgbackrest
 
 Technologies: PostgreSQL, pglogical, Cassandra, PL/pgSQL, liquibase
 
-### FIX — Database Architect
-*July 2017 — December 2018*
+### FIX - Database Architect
+*July 2017 - December 2018*
 
 - Designing and implementing multidirectional PostgreSQL logical replication architecture based on pglogical.
 - Testing and implementing an undocumented approach to major upgrades of an HBase cluster.
@@ -74,8 +74,8 @@ Technologies: PostgreSQL, pglogical, Cassandra, PL/pgSQL, liquibase
 
 Technologies: PostgreSQL, pglogical, barman, Amazon_Web_Services, HBase, hdfs, SQL, Prometheus, Ansible, GitLab
 
-### ICL-KME CS — Database Administrator
-*February 2014 — July 2017*
+### ICL-KME CS - Database Administrator
+*February 2014 - July 2017*
 
 - Administering PostgreSQL in production environments, ensuring database stability and performance.
 - Analyzing execution plans and optimizing queries.
