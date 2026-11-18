@@ -8,6 +8,7 @@ on:
       - 'index.html'
       - 'styles.css'
       - 'script.js'
+      - 'pdf.js'
       - 'content/**'
       - 'config/**'
       - 'assets/**'
@@ -70,6 +71,14 @@ jobs:
           }
           assert.match(typography,/border-radius:\s*50%/);
           assert.match(typography,/filter:\s*none/);
+          const pdfSource=fs.readFileSync('pdf.js','utf8');
+          new Function(pdfSource);
+          assert.ok(html.includes('id="download-pdf"'),'Download control is present');
+          assert.ok(html.includes('src="pdf.js"'),'PDF script is included');
+          assert.ok(script.includes('downloadPdf: "Скачать PDF ↓"'),'Russian button translation');
+          assert.ok(script.includes('downloadPdf: "Download PDF ↓"'),'English button translation');
+          assert.ok(pdfSource.includes('getFreshRoles'),'PDF uses Markdown content');
+          console.log('PDF source and translations: OK');
           console.log('Dynamic rendering, editable config and circular color portrait: OK');
           NODE
       - name: Check live URL and capture screenshots
@@ -113,11 +122,71 @@ jobs:
           grep -q 'Automated Information Processing and Control Systems' /tmp/rendered.html
           grep -q 'OpenAI Codex' /tmp/rendered.html
           grep -q 'more than 600 PostgreSQL clusters' /tmp/rendered.html
+          grep -q 'id="download-pdf"' /tmp/rendered.html
           if grep -q 'Could not load work history' /tmp/rendered.html; then echo "Markdown failed to load"; exit 1; fi
           google-chrome --headless=new --no-sandbox --disable-dev-shm-usage --disable-gpu --hide-scrollbars --window-size=1440,1000 --virtual-time-budget=4500 --screenshot=screenshots/desktop.png "${SITE}" >/tmp/chrome-desktop.log 2>&1
           google-chrome --headless=new --no-sandbox --disable-dev-shm-usage --disable-gpu --hide-scrollbars --window-size=1366,768 --virtual-time-budget=4500 --screenshot=screenshots/laptop.png "${SITE}" >/tmp/chrome-laptop.log 2>&1
           google-chrome --headless=new --no-sandbox --disable-dev-shm-usage --disable-gpu --hide-scrollbars --window-size=390,844 --virtual-time-budget=4500 --screenshot=screenshots/mobile.png "${SITE}" >/tmp/chrome-mobile.log 2>&1
           ls -lh screenshots
+      - name: Verify generated English and Russian PDFs in Chrome
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-save --no-audit --no-fund puppeteer-core@24.15.0
+          mkdir -p pdf-check
+          node <<'NODE'
+          const puppeteer = require('puppeteer-core');
+          const fs = require('node:fs');
+          const path = require('node:path');
+          const assert = require('node:assert/strict');
+          (async () => {
+            const browser = await puppeteer.launch({
+              executablePath: '/usr/bin/google-chrome',
+              headless: true,
+              args: ['--no-sandbox', '--disable-dev-shm-usage']
+            });
+            try {
+              for(const lang of ['en','ru']) {
+                const page = await browser.newPage();
+                const folder = path.resolve('pdf-check');
+                const client = await page.createCDPSession();
+                await client.send('Page.setDownloadBehavior', { behavior: 'allow', downloadPath: folder });
+                await page.goto('https://rstkzn.github.io/landing/', {waitUntil:'networkidle2',timeout:45000});
+                await page.waitForSelector('#download-pdf:not([disabled])',{timeout:20000});
+                if(lang === 'ru') {
+                  await page.click('#lang');
+                  await page.waitForFunction(() => document.documentElement.lang === 'ru' && document.querySelectorAll('#positions article').length >= 6);
+                }
+                const filename = 'Rustam_Valeev_CV_' + lang.toUpperCase() + '.pdf';
+                const filepath = path.join(folder,filename);
+                try { fs.unlinkSync(filepath); } catch (_) {}
+                await page.click('#download-pdf');
+                let complete = false;
+                for(let n=0;n<100;n++) {
+                  await new Promise(resolve => setTimeout(resolve,500));
+                  if(fs.existsSync(filepath) && fs.statSync(filepath).size > 2000) {
+                    const b=fs.readFileSync(filepath);
+                    if(b.subarray(0,5).toString() === '%PDF-') { complete=true; break; }
+                  }
+                  const status=await page.$eval('#pdf-download-status',el=>el.textContent);
+                  if(status.includes('failed') || status.includes('Не удалось'))throw Error('PDF generation failed: '+status);
+                }
+                assert.ok(complete,lang+': no downloaded PDF');
+                console.log(lang+': generated '+filename+' ('+fs.statSync(filepath).size+' bytes)');
+                await page.close();
+              }
+            } finally { await browser.close(); }
+          })().catch(e=>{console.error(e);process.exit(1)});
+          NODE
+          if command -v pdftotext >/dev/null 2>&1; then
+            pdftotext -layout pdf-check/Rustam_Valeev_CV_EN.pdf pdf-check/en.txt
+            pdftotext -layout pdf-check/Rustam_Valeev_CV_RU.pdf pdf-check/ru.txt
+            grep -q 'SberDevices' pdf-check/en.txt
+            grep -q 'Exness' pdf-check/ru.txt
+            grep -q 'Казанский' pdf-check/ru.txt
+            grep -q 'Automated Information Processing' pdf-check/en.txt
+            echo "PDF text content verified in both languages"
+          fi
       - name: Archive editable project and screenshots
         uses: actions/upload-artifact@v4
         if: always()
@@ -126,6 +195,7 @@ jobs:
           path: |
             index.html
             script.js
+            pdf.js
             styles.css
             content/
             config/
