@@ -81,15 +81,27 @@
   function createDefinition(language, roles) {
     const text = translations[language];
     const line = "#D9DEDA";
+    // Reuse the visible page's personal details rather than duplicating them.
+    const displayName = document.getElementById("page-title")?.textContent?.trim() || "Rustam Valeev";
+    const displayRole = document.querySelector(".intro-role")?.textContent?.trim() || "Senior Database Engineer";
+    const emailLink = document.querySelector('#contact a[href^="mailto:"]');
+    const phoneLink = document.querySelector('#contact a[href^="tel:"]');
+    const linkedInLink = document.querySelector('#contact a[href*="linkedin.com"]');
+    const contacts = [];
+    if (emailLink) contacts.push({ text: emailLink.textContent.trim(), link: emailLink.href, color: "#355E50" });
+    if (phoneLink) {
+      if (contacts.length) contacts.push("   ·   ");
+      contacts.push({ text: phoneLink.textContent.trim(), link: phoneLink.href, color: "#355E50" });
+    }
+    if (linkedInLink) {
+      if (contacts.length) contacts.push("   ·   ");
+      contacts.push({ text: "LinkedIn", link: linkedInLink.href, color: "#355E50" });
+    }
     const content = [
-      { text: "Rustam Valeev", style: "name", margin: [0, 0, 0, 2] },
-      { text: "Senior Database Engineer", style: "subtitle", margin: [0, 0, 0, 9] },
+      { text: displayName, style: "name", margin: [0, 0, 0, 2] },
+      { text: displayRole, style: "subtitle", margin: [0, 0, 0, 9] },
       {
-        text: [
-          { text: "rstkzn@yandex.ru", link: "mailto:rstkzn@yandex.ru", color: "#355E50" },
-          "   ·   +7 917 393 5321   ·   ",
-          { text: "LinkedIn", link: "https://www.linkedin.com/in/rustam-v/", color: "#355E50" }
-        ],
+        text: contacts,
         style: "contacts",
         margin: [0, 0, 0, 15]
       },
@@ -137,7 +149,7 @@
       pageSize: "A4",
       pageMargins: [42, 40, 42, 46],
       info: {
-        title: "Rustam Valeev — Senior Database Engineer",
+        title: displayName + " — " + displayRole,
         author: "Rustam Valeev",
         subject: "Database Engineering CV (" + language.toUpperCase() + ")"
       },
