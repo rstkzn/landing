@@ -31,7 +31,7 @@
   --role-title-size: 12px;
   --employment-dates-size: 13px;
 
-  /* Work description – change these most often */
+  /* Work description - change these most often */
   --work-description-size: 15px;
   --work-description-line-height: 1.65;
   --work-bullet-gap: 7px;
@@ -48,7 +48,7 @@
   --contact-text-size: 14px;
   --footer-text-size: 11px;
 
-  /* Portrait – color, round */
+  /* Portrait - color, round */
   --portrait-desktop-size: 214px;
   --portrait-mobile-size: 136px;
 }
