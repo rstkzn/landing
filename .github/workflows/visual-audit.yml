@@ -35,6 +35,8 @@ jobs:
             const roles = parse(markdown);
             assert.equal(roles.length, 6, 'Existing work history in ' + lang);
             assert.ok(roles.every(r => r.company && r.title && r.dates && r.bullets.length));
+            assert.equal(roles.reduce((sum,role)=>sum+role.bullets.length,0),51,'All updated job responsibilities present in ' + lang);
+            assert.equal(roles[2].bullets.length,8,'SberDevices details in ' + lang);
             const synthetic = markdown + '\n\n### Synthetic Employer — Database Engineer\n*2027 — Present*\n\n- Extra position.\n\nTechnologies: PostgreSQL\n';
             const added = parse(synthetic);
             assert.equal(added.length,7,'New job discovered from Markdown without touching HTML');
@@ -53,6 +55,11 @@ jobs:
           const html = fs.readFileSync('index.html','utf8');
           const typography = fs.readFileSync('config/typography.css','utf8');
           assert.match(html,/id="positions"/);
+          assert.match(html,/id="education"/,'Education section is present');
+          const scriptContent = fs.readFileSync('script.js','utf8');
+          assert.ok(scriptContent.includes('Автоматизированные системы обработки информации и управления'));
+          assert.ok(scriptContent.includes('Automated Information Processing and Control Systems'));
+          assert.ok(scriptContent.includes('более чем 12-летним'));
           assert.equal(html.split('linkedin.com/in/rustam-v/').length-1,1,'One LinkedIn link');
           assert.ok(html.includes('mailto:rstkzn@yandex.ru'));
           assert.ok(html.includes('tel:+79173935321'));
@@ -103,6 +110,9 @@ jobs:
           grep -q 'tel:+79173935321' /tmp/rendered.html
           grep -q 'position position-primary' /tmp/rendered.html
           grep -q '10 TB in 10 hours' /tmp/rendered.html
+          grep -q 'Automated Information Processing and Control Systems' /tmp/rendered.html
+          grep -q 'OpenAI Codex' /tmp/rendered.html
+          grep -q 'more than 600 PostgreSQL clusters' /tmp/rendered.html
           if grep -q 'Could not load work history' /tmp/rendered.html; then echo "Markdown failed to load"; exit 1; fi
           google-chrome --headless=new --no-sandbox --disable-dev-shm-usage --disable-gpu --hide-scrollbars --window-size=1440,1000 --virtual-time-budget=4500 --screenshot=screenshots/desktop.png "${SITE}" >/tmp/chrome-desktop.log 2>&1
           google-chrome --headless=new --no-sandbox --disable-dev-shm-usage --disable-gpu --hide-scrollbars --window-size=1366,768 --virtual-time-budget=4500 --screenshot=screenshots/laptop.png "${SITE}" >/tmp/chrome-laptop.log 2>&1
