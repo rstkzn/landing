@@ -88,7 +88,7 @@ function parseExperience(markdown) {
     }
     if (!line || line === "---") { lastBulletIndex = -1; continue; }
 
-    const heading = line.match(/^###\s+(.+?)\s+[---]\s+(.+)$/);
+    const heading = line.match(/^###\s+(.+?)\s+[-\u2013\u2014]\s+(.+)$/);
     if (heading) {
       role = {
         company: heading[1].trim(),
