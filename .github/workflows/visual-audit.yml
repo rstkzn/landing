@@ -56,6 +56,15 @@ jobs:
           const html = fs.readFileSync('index.html','utf8');
           const typography = fs.readFileSync('config/typography.css','utf8');
           assert.match(html,/id="positions"/);
+          assert.ok(!html.includes('experience-years'),'No redundant experience date range');
+          const css=fs.readFileSync('styles.css','utf8');
+          assert.ok(css.includes('list-style-type:"-  "'),'Plain hyphen list markers');
+          assert.match(css,/\.position-tools\{[^}]*padding:13px 0 0 21px/);
+          for(const lang of ['ru','en']){
+            const source=fs.readFileSync('content/experience.'+lang+'.md','utf8');
+            assert.ok(!/[—–]/.test(source),'No typographic long dashes in '+lang);
+          }
+
           assert.match(html,/id="education"/,'Education section is present');
           const scriptContent = fs.readFileSync('script.js','utf8');
           assert.ok(scriptContent.includes('Автоматизированные системы обработки информации и управления'));
@@ -160,6 +169,19 @@ jobs:
                   await page.click('#lang');
                   await page.waitForFunction(() => document.documentElement.lang === 'ru' && document.querySelectorAll('#positions article').length >= 6);
                 }
+                const layout=await page.evaluate(() => {
+                  const item=document.querySelector('#positions .position li');
+                  const tech=document.querySelector('#positions .position .tools-list');
+                  if(!item || !tech) return null;
+                  const left=item.getBoundingClientRect().left+parseFloat(getComputedStyle(item).paddingLeft);
+                  const techLeft=tech.getBoundingClientRect().left;
+                  const headings=[...document.querySelectorAll('#positions .position-date')].map(e=>e.textContent);
+                  return {left,techLeft,headings,visiblePeriod:!!document.getElementById('experience-years')};
+                });
+                assert.ok(layout,'Experience and technologies rendered in '+lang);
+                assert.ok(Math.abs(layout.left-layout.techLeft)<3,'Technology left edge follows bullet text: '+JSON.stringify(layout));
+                assert.ok(!layout.visiblePeriod,'No redundant experience period');
+                assert.ok(layout.headings.every(s=>!/[—–]/.test(s)),'Dates use normal hyphen');
                 const filename = 'Rustam_Valeev_CV_' + lang.toUpperCase() + '.pdf';
                 const filepath = path.join(folder,filename);
                 try { fs.unlinkSync(filepath); } catch (_) {}
