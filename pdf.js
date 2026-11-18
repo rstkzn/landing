@@ -149,7 +149,7 @@
       pageSize: "A4",
       pageMargins: [42, 40, 42, 46],
       info: {
-        title: displayName + " — " + displayRole,
+        title: displayName + " - " + displayRole,
         author: "Rustam Valeev",
         subject: "Database Engineering CV (" + language.toUpperCase() + ")"
       },
