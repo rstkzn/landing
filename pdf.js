@@ -25,6 +25,7 @@
   ];
   let pdfLibrary = null;
   let libraryPromise = null;
+  let fontsReady = false;
 
   function injectScript(src) {
     return new Promise((resolve, reject) => {
@@ -45,11 +46,15 @@
         for (const pair of resources) {
           try {
             if (!window.pdfMake?.createPdf) await injectScript(pair[0]);
-            if (!window.pdfMake?.vfs || !Object.keys(window.pdfMake.vfs).length) {
+            if (!fontsReady) {
+              // pdfmake 0.2.x registers the VFS internally via
+              // addVirtualFileSystem(), so window.pdfMake.vfs is not
+              // necessarily exposed even when fonts are registered.
               await injectScript(pair[1]);
+              fontsReady = true;
             }
-            if (!window.pdfMake?.createPdf || !window.pdfMake?.vfs || !Object.keys(window.pdfMake.vfs).length) {
-              throw new Error("PDF engine or font bundle is unavailable");
+            if (!window.pdfMake?.createPdf) {
+              throw new Error("PDF engine is unavailable");
             }
             pdfLibrary = window.pdfMake;
             return pdfLibrary;
