@@ -1,0 +1,34 @@
+name: Bundle PDF engine
+on:
+  push:
+    paths:
+      - '.github/workflows/vendor-pdf-engine.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  vendor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Copy pinned pdfmake browser build into repository
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --prefix "$RUNNER_TEMP/pdfmake" --no-save --no-audit --no-fund pdfmake@0.2.23
+          mkdir -p vendor
+          cp "$RUNNER_TEMP/pdfmake/node_modules/pdfmake/build/pdfmake.min.js" vendor/pdfmake.min.js
+          cp "$RUNNER_TEMP/pdfmake/node_modules/pdfmake/build/vfs_fonts.js" vendor/vfs_fonts.js
+          test "$(wc -c < vendor/pdfmake.min.js)" -gt 100000
+          test "$(wc -c < vendor/vfs_fonts.js)" -gt 100000
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add vendor/pdfmake.min.js vendor/vfs_fonts.js
+          if git diff --cached --quiet; then
+            echo "PDF engine already vendored"
+          else
+            git commit -m "Vendor pinned pdfmake browser library and Unicode font bundle"
+            git push origin HEAD:main
+          fi
