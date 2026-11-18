@@ -1,7 +1,7 @@
 /*
  * Rustam Valeev website
  * Experience is loaded from content/experience.{en,ru}.md.
- * To add a role, add a ### Company — Job title heading, an italic date
+ * To add a role, add a ### Company - Job title heading, an italic date
  * line, followed by ordinary Markdown list items. No HTML changes needed.
  */
 const translations = {
@@ -30,7 +30,7 @@ const translations = {
     navExperience: "Опыт",
     navContact: "Контакты",
     introKicker: "DATABASE ENGINEER / POSTGRESQL",
-    introSummary: "Инженер баз данных с более чем 12-летним опытом эксплуатации и развития высоконагруженных систем. Основная экспертиза — PostgreSQL: оптимизация SQL и планов выполнения, проектирование хранения и индексов, репликация и надёжность production-систем. Разрабатываю инструменты обработки и сверки данных, участвую в архитектурной экспертизе и расследовании сложных инцидентов.",
+    introSummary: "Инженер баз данных с более чем 12-летним опытом эксплуатации и развития высоконагруженных систем. Основная экспертиза - PostgreSQL: оптимизация SQL и планов выполнения, проектирование хранения и индексов, репликация и надёжность production-систем. Разрабатываю инструменты обработки и сверки данных, участвую в архитектурной экспертизе и расследовании сложных инцидентов.",
     introDetails: "SQL & performance · Data modeling · Replication · Reliability",
     experienceTitle: "Опыт работы",
     downloadPdf: "Скачать PDF ↓",
@@ -51,7 +51,6 @@ const translations = {
 
 const languageButton = document.getElementById("lang");
 const positionsElement = document.getElementById("positions");
-const yearsElement = document.getElementById("experience-years");
 const statusElement = document.getElementById("experience-status");
 const experienceCache = new Map();
 let currentLanguage = "en";
@@ -62,8 +61,8 @@ try { if (localStorage.getItem("portfolio-language") === "ru") currentLanguage =
 /*
  * Supported Markdown syntax (one role per ### heading):
  *
- * ### Company — Job title
- * *January 2020 — Present*
+ * ### Company - Job title
+ * *January 2020 - Present*
  *
  * - Responsibility
  * - Responsibility
@@ -89,7 +88,7 @@ function parseExperience(markdown) {
     }
     if (!line || line === "---") { lastBulletIndex = -1; continue; }
 
-    const heading = line.match(/^###\s+(.+?)\s+[—–-]\s+(.+)$/);
+    const heading = line.match(/^###\s+(.+?)\s+[---]\s+(.+)$/);
     if (heading) {
       role = {
         company: heading[1].trim(),
@@ -195,15 +194,6 @@ function createRole(role, index, language) {
   return article;
 }
 
-function yearsFromRoles(roles, language) {
-  const years = roles.flatMap(role => [...role.dates.matchAll(/(?:19|20)\d{2}/g)].map(match => Number(match[0])));
-  if (!years.length) return "";
-  const earliest = Math.min(...years);
-  const latest = Math.max(...years);
-  const current = roles.some(role => /(?:настоящее время|present|current|now)/i.test(role.dates));
-  return earliest + " — " + (current ? (language === "ru" ? "наст. время" : "Present") : latest);
-}
-
 async function getExperience(language) {
   if (experienceCache.has(language)) return experienceCache.get(language);
   const path = "content/experience." + language + ".md";
@@ -235,7 +225,6 @@ async function applyLanguage(language) {
     const fragment = document.createDocumentFragment();
     roles.forEach((role, index) => fragment.appendChild(createRole(role, index, language)));
     positionsElement.replaceChildren(fragment);
-    yearsElement.textContent = yearsFromRoles(roles, language);
     positionsElement.setAttribute("aria-busy", "false");
   } catch (error) {
     if (token !== requestToken) return;
