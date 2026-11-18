@@ -1,4 +1,4 @@
-# Rustam Valeev — personal CV website
+# Rustam Valeev - personal CV website
 
 A small static website hosted on GitHub Pages.
 
@@ -34,8 +34,8 @@ Edit **content/experience.ru.md** for Russian and **content/experience.en.md** f
 Use this Markdown format (copy a whole block for a new job):
 
 ```md
-### Example Company — Senior Database Engineer
-*September 2026 — Present*
+### Example Company - Senior Database Engineer
+*September 2026 - Present*
 
 - First responsibility.
 - Second responsibility with **optional bold text**.
@@ -47,8 +47,8 @@ Technologies: PostgreSQL, Linux, Grafana
 Russian version:
 
 ```md
-### Пример компании — Senior Database Engineer
-*Сентябрь 2026 — настоящее время*
+### Пример компании - Senior Database Engineer
+*Сентябрь 2026 - настоящее время*
 
 - Первая область ответственности.
 - Вторая область ответственности.
@@ -58,7 +58,7 @@ Russian version:
 
 ### Parsing rules
 
-- **`### Company — Position`** starts a new employer entry. Use a long em dash `—` or en dash `–` between company and position.
+- **`### Company - Position`** starts a new employer entry. Use the plain hyphen `-` between company and position (older en/em-dash headings remain supported).
 - The following *italic* line (`*...*`) is the date range. You can also write `Dates: ...` or `Даты: ...`.
 - Each `- ` or `* ` line becomes a bullet.
 - `Technologies: ...` / `Технологии и инструменты: ...` shows a technology list.
@@ -66,7 +66,7 @@ Russian version:
 - For two languages, add the same job in **both** files. Language switching loads the corresponding file.
 - Optional inline formatting in bullet text: `**bold**`, `*italic*`, `\`code\``.
 - Text is inserted safely as text nodes; HTML tags from Markdown are never executed.
-- Years next to the Experience heading are derived from the date ranges.
+- The Experience heading does not repeat a date range; each role includes its own dates.
 - Job entries appear in **file order**, so place the newest job first.
 
 **Publishing:** commit edits to `main`. GitHub Pages republishes the site; refresh the website to retrieve the updated Markdown. No `index.html` or JavaScript edits are required to add jobs.
